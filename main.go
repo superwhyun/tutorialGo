@@ -117,6 +117,12 @@ func main() {
 	fmt.Println("Step 9 ============================")
 	deck2 := newDeckfromFile("fucker.sav")
 	deck2.print()
+
+	//////////////////////////////////
+	// Step 10: Random 함수 사용하기
+	fmt.Println("Step 10: Shuffle ============================")
+	deck2.shuffle()
+	deck2.print()
 }
 
 // 함수 선언

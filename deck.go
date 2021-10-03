@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -67,6 +68,7 @@ func (d deck) saveToFile(filename string) error {
 
 //////////////////////////////////
 // Step 9: 파일읽기
+// []byte ==> string ==> []string ==> deck
 
 func newDeckfromFile(filename string) deck {
 	bs, err := ioutil.ReadFile(filename)
@@ -80,4 +82,19 @@ func newDeckfromFile(filename string) deck {
 		// fmt.Println(str2)
 		return deck(strings.Split(string(bs), ","))
 	}
+}
+
+//////////////////////////////////
+// Step 9: Random 함수 사용하기
+
+func (d deck) shuffle() {
+	for i := range d {
+		newPosition := rand.Intn(len(d) - 1)
+
+		//////////////////////////////////
+		// Swapping in Go
+		d[i], d[newPosition] = d[newPosition], d[i]
+
+	}
+
 }
