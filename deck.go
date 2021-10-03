@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // deck이라는 새로운 변수를 만듬. 걔는 []string 타입임.
@@ -85,11 +86,15 @@ func newDeckfromFile(filename string) deck {
 }
 
 //////////////////////////////////
-// Step 9: Random 함수 사용하기
+// Step 10: Random 함수 사용하기
 
 func (d deck) shuffle() {
+	// 아래 2줄을 넣어주지 않으면, Intn 함수가 항상 같은 값 넘김
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
 	for i := range d {
-		newPosition := rand.Intn(len(d) - 1)
+		newPosition := r.Intn(len(d) - 1)
 
 		//////////////////////////////////
 		// Swapping in Go
